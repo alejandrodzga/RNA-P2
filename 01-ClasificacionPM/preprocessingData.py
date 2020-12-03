@@ -9,9 +9,9 @@ def datainput():
     data = np.loadtxt(f,dtype=float, delimiter=',',skiprows=1)
     np.array(data)
     f.close()
-    return data 
+    return data
 
-    
+
 # Funcion cuyo objetivo es normalizar los valores de la matriz entre 0 y 1
 def normalizacion(data):
     #columna1
@@ -96,6 +96,91 @@ datos = datainput()
 normalizacion(datos)
 
 
+# Division en 4 partes P1, P2, P3, P4
+
+p1 = np.empty(shape=(1,13))
+
+p2 = np.empty(shape=(1,13))
+
+p3 = np.empty(shape=(1,13))
+
+p4 = np.empty(shape=(1,13))
+
+
+# Contadores de cada tipo de imagen
+contadorCieloD = 1
+contadorMulinube = 1
+contadorNube = 1
+
+
+# Numero maximo de cada instancia por conjunto para guardar proporcion NO USADO AUN
+numerCieloD = 12
+numeroMultinube = 39
+numeroNube1 = 128
+numeroNube2 = 129
+
+# Meter datos cielo despejado
+for i in range(717):
+    if(datos[i][12]==1):
+        if(contadorCieloD<=12):
+            p1 = np.vstack((p1,datos[i]))
+            contadorCieloD = contadorCieloD+1
+        if(12<contadorCieloD and contadorCieloD<=24):
+            p2 = np.vstack((p2,datos[i]))
+            contadorCieloD = contadorCieloD+1
+        if(24<contadorCieloD and contadorCieloD<=36):
+            p3 = np.vstack((p3,datos[i]))
+            contadorCieloD = contadorCieloD+1
+        if(36<contadorCieloD and contadorCieloD<=48):
+            p4 = np.vstack((p4,datos[i]))
+            contadorCieloD = contadorCieloD+1
+
+# Meter datos multinube
+for i in range(717):
+    if(datos[i][12]==2):
+        if(contadorMulinube<=39):
+            p1 = np.vstack((p1,datos[i]))
+            contadorMulinube = contadorMulinube+1
+        if(39<contadorMulinube and contadorMulinube<=78):
+            p2 = np.vstack((p2,datos[i]))
+            contadorMulinube = contadorMulinube+1
+        if(78<contadorMulinube and contadorMulinube<=117):
+            p3 = np.vstack((p3,datos[i]))
+            contadorMulinube = contadorMulinube+1
+        if(117<contadorMulinube and contadorMulinube<=156):
+            p4 = np.vstack((p4,datos[i]))
+            contadorMulinube = contadorMulinube+1
+
+
+# Meter datos nube
+for i in range(717):
+    if(datos[i][12]==3):
+        if(contadorNube<=128):
+            p1 = np.vstack((p1,datos[i]))
+            contadorNube = contadorNube+1
+        if(128<contadorNube and contadorNube<=256):
+            p2 = np.vstack((p2,datos[i]))
+            contadorNube = contadorNube+1
+        if(256<contadorNube and contadorNube<=384):
+            p3 = np.vstack((p3,datos[i]))
+            contadorNube = contadorNube+1
+        if(384<contadorNube and contadorNube<=513):
+            p4 = np.vstack((p4,datos[i]))
+            contadorNube = contadorNube+1
+
+
+p1 = np.delete(p1,0,0)
+p2 = np.delete(p2,0,0)
+p3 = np.delete(p3,0,0)
+p4 = np.delete(p4,0,0)
+
+np.random.shuffle(p1)
+np.random.shuffle(p2)
+np.random.shuffle(p3)
+np.random.shuffle(p4)
+
+
+# TODO CREAR LOS FICHEROS DE LOS FOLDS DE TRAIN Y TEST COMO PONE EN LA PRESENTACION
 
 """
 # Aleatorizacion de los datos (rotar las filas de la matriz)
@@ -121,6 +206,26 @@ f1 = open("dataout.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
 np.savetxt(f1, datos, delimiter=' , ', fmt='%f')
 f1.close()
+
+f2 = open("p1.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p1, delimiter=' , ', fmt='%f')
+f2.close()
+
+f2 = open("p2.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p2, delimiter=' , ', fmt='%f')
+f2.close()
+
+f2 = open("p3.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p3, delimiter=' , ', fmt='%f')
+f2.close()
+
+f2 = open("p4.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p4, delimiter=' , ', fmt='%f')
+f2.close()
 
 """
 # SALIDA DATOS DE ENTRENAMIENTO
