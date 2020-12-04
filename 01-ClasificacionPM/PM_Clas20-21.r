@@ -3,7 +3,7 @@ library(RSNNS)
 # Funciones
 
 graficaError <- function(iterativeErrors){
-  plot(1:nrow(iterativeErrors),iterativeErrors[,1], type="l", main="Evoluci�n del error",
+  plot(1:nrow(iterativeErrors),iterativeErrors[,1], type="l", main="Evolucion del error",
        ylab="MSE (3 salidas)",xlab="Ciclos",
        ylim=c(min(iterativeErrors),max(iterativeErrors)))
   lines(1:nrow(iterativeErrors),iterativeErrors[,2], col="red")
@@ -24,11 +24,11 @@ fold <- 1
 # usar read.table si los campos est�n separados por espacios o tabuladores. 
 # Si est�n separados por ; o , usar read.csv
 
-#trainSet <- read.table(paste("Train",fold,".txt",sep=""),header = T)
-#testSet  <- read.table(paste("Test", fold,".txt",sep=""),header = T)
+trainSet <- read.table(paste("Train",fold,".txt",sep=""),dec=".",sep=",",header = F)
+testSet  <- read.table(paste("Test", fold,".txt",sep=""),dec=".",sep=",",header = F)
 
-trainSet <- read.csv(paste("Train",fold,".csv",sep=""),dec=".",sep=",",header = T)
-testSet  <- read.csv(paste("Test", fold,".csv",sep=""),dec=".",sep=",",header = T)
+#trainSet <- read.csv(paste("Train",fold,".csv",sep=""),dec=".",sep=",",header = T)
+#testSet  <- read.csv(paste("Test", fold,".csv",sep=""),dec=".",sep=",",header = T)
 
 
 #SELECCION DE LA SALIDA. Num de columna del target. 
@@ -51,7 +51,7 @@ testInput  <- as.matrix(testInput )
 #SELECCION DE LOS HIPERPARAMETROS DE LA RED
 topologia        <- c(10)
 razonAprendizaje <- 0.01
-ciclosMaximos    <- 2000
+ciclosMaximos    <- 500
 
 ## generar un nombre de fichero que incluya los hiperpar�metros
 fileID <- paste("fold_",fold,"_topol",paste(topologia,collapse="-"),"_ra",
@@ -112,8 +112,8 @@ accuracies
 
 
 # calcular errores finales MSE
-#MSEtrain <-sum((trainTarget - trainPred)^2)/nrow(trainSet)
-#MSEtest <-sum((testTarget - testPred)^2)/nrow(testSet)
+MSEtrain <-sum((trainTarget - trainPred)^2)/nrow(trainSet)
+MSEtest <-sum((testTarget - testPred)^2)/nrow(testSet)
 
 
 
