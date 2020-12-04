@@ -3,7 +3,7 @@ library(RSNNS)
 # Funciones
 
 graficaError <- function(iterativeErrors){
-  plot(1:nrow(iterativeErrors),iterativeErrors[,1], type="l", main="Evolución del error",
+  plot(1:nrow(iterativeErrors),iterativeErrors[,1], type="l", main="Evoluciï¿½n del error",
        ylab="MSE (3 salidas)",xlab="Ciclos",
        ylim=c(min(iterativeErrors),max(iterativeErrors)))
   lines(1:nrow(iterativeErrors),iterativeErrors[,2], col="red")
@@ -21,8 +21,8 @@ set.seed(1)
 fold <- 1
 
 
-# usar read.table si los campos están separados por espacios o tabuladores. 
-# Si están separados por ; o , usar read.csv
+# usar read.table si los campos estï¿½n separados por espacios o tabuladores. 
+# Si estï¿½n separados por ; o , usar read.csv
 
 #trainSet <- read.table(paste("Train",fold,".txt",sep=""),header = T)
 #testSet  <- read.table(paste("Test", fold,".txt",sep=""),header = T)
@@ -53,7 +53,7 @@ topologia        <- c(10)
 razonAprendizaje <- 0.01
 ciclosMaximos    <- 2000
 
-## generar un nombre de fichero que incluya los hiperparámetros
+## generar un nombre de fichero que incluya los hiperparï¿½metros
 fileID <- paste("fold_",fold,"_topol",paste(topologia,collapse="-"),"_ra",
                 razonAprendizaje,"_iter",ciclosMaximos,sep="")
 
@@ -125,10 +125,10 @@ saveRDS(model,            paste("nnet_",fileID,".rds",sep=""))
 #tasa de aciertos (accuracy)
 write.csv(accuracies,     paste("finalAccuracies_",fileID,".csv",sep=""))
 
-#Evolución de los errores MSE
+#Evoluciï¿½n de los errores MSE
 write.csv(iterativeErrors,paste("iterativeErrors_",fileID,".csv",sep=""))
 
-#salidas esperadas de test con la clase (Target) (última columna del fichero de test)
+#salidas esperadas de test con la clase (Target) (ï¿½ltima columna del fichero de test)
 write.csv( testSet[,nTarget] ,      paste("TestTarget_",fileID,".csv",sep=""), row.names = TRUE)
 
 
@@ -142,9 +142,6 @@ write.csv(testPred ,      paste("TestRawOutputs_",fileID,".csv",sep=""), row.nam
 #salidas de test con la clase
 write.csv(testPredClass,  paste("TestClassOutputs_",fileID,".csv",sep=""),row.names = TRUE)
 
-# matrices de confusión
+# matrices de confusiï¿½n
 write.csv(trainCm,        paste("trainCm_",fileID,".csv",sep=""))
 write.csv(testCm,         paste("testCm_",fileID,".csv",sep=""))
-
-
-
