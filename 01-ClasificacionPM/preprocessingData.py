@@ -1,4 +1,4 @@
-# Practica 1 de Redes de Neuronas artificiales. Programacion de Adaline. Preprocesado de datos
+# Practica 2 de Redes de Neuronas artificiales.
 
 import numpy as np
 import random as rnd
@@ -180,6 +180,33 @@ np.random.shuffle(p3)
 np.random.shuffle(p4)
 
 
+# Creamos los conjuntos de entrenamiento
+p234 = p2
+p134 = p1
+p124 = p1
+p123 = p1
+
+p234 = np.vstack((p234,p3))
+p234 = np.vstack((p234,p4))
+
+p134 = np.vstack((p134,p3))
+p134 = np.vstack((p134,p4))
+
+p124 = np.vstack((p124,p2))
+p124 = np.vstack((p124,p4))
+
+p123 = np.vstack((p123,p2))
+p123 = np.vstack((p123,p3))
+
+# Aleatorizamos los conjuntos de entrenamiento
+
+np.random.shuffle(p123)
+np.random.shuffle(p234)
+np.random.shuffle(p134)
+np.random.shuffle(p124)
+
+
+
 # TODO CREAR LOS FICHEROS DE LOS FOLDS DE TRAIN Y TEST COMO PONE EN LA PRESENTACION
 
 """
@@ -199,14 +226,34 @@ testData = datos[13600:]
 """
 ####################################### SALIDA DE DATOS #################################################
 
+def changer(cdata):
+    for i in range(np.shape(cdata)[0]):
+        if(cdata[i,12]==1):
+            cdata[i,12]=10
+        if(cdata[i,12]==2):
+            cdata[i,12]=20
+        if(cdata[i,12]==3):
+            cdata[i,12]=30
 
-# SALIDA DEL CONJUNTO DE DATOS NORMALIZADOS (SIN DIVIDIR)
-# Abrimos el archivo de salida de datos 
+
+
+changer(p1)
+changer(p2)
+changer(p3)
+changer(p4)
+changer(p123)
+changer(p124)
+changer(p234)
+changer(p134)
+
+# Fichero datos normalizados 
 f1 = open("dataout.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
 np.savetxt(f1, datos, delimiter=' , ', fmt='%f')
 f1.close()
 
+
+# Ficheros p1, p2, p3, p4
 f2 = open("p1.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
 np.savetxt(f2, p1, delimiter=' , ', fmt='%f')
@@ -225,6 +272,29 @@ f2.close()
 f2 = open("p4.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
 np.savetxt(f2, p4, delimiter=' , ', fmt='%f')
+f2.close()
+
+
+# Ficheros de entrenamiento
+f2 = open("p234.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p234, delimiter=' , ', fmt='%f')
+f2.close()
+
+f2 = open("p134.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p134, delimiter=' , ', fmt='%f')
+f2.close()
+
+f2 = open("p124.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p124, delimiter=' , ', fmt='%f')
+f2.close()
+
+
+f2 = open("p123.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p123, delimiter=' , ', fmt='%f')
 f2.close()
 
 """
