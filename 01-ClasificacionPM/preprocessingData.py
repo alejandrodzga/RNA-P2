@@ -95,6 +95,7 @@ datos = datainput()
 # Normalizamos la matriz de datos
 normalizacion(datos)
 
+np.random.shuffle(datos)
 
 # Division en 4 partes P1, P2, P3, P4
 
@@ -246,56 +247,68 @@ changer(p124)
 changer(p234)
 changer(p134)
 
+
+
+
 # Fichero datos normalizados 
 f1 = open("dataout.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f1, datos, delimiter=' , ', fmt='%f')
+np.savetxt(f1, datos, delimiter=',', fmt='%f')
 f1.close()
 
 
+
+
+
+
 # Ficheros p1, p2, p3, p4
-f2 = open("p1.txt", "w")
+f2 = open("Test1.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p1, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p1, delimiter=',', fmt='%f')
 f2.close()
 
-f2 = open("p2.txt", "w")
+f2 = open("Test2.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p2, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p2, delimiter=',', fmt='%f')
 f2.close()
 
-f2 = open("p3.txt", "w")
+f2 = open("Test3.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p3, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p3, delimiter=',', fmt='%f')
 f2.close()
 
-f2 = open("p4.txt", "w")
+f2 = open("Test4.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p4, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p4, delimiter=',', fmt='%f')
 f2.close()
 
 
 # Ficheros de entrenamiento
-f2 = open("p234.txt", "w")
+f2 = open("Train1.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p234, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p234, delimiter=',', fmt='%f')
 f2.close()
 
-f2 = open("p134.txt", "w")
+f2 = open("Train2.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p134, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p134, delimiter=',', fmt='%f')
 f2.close()
 
-f2 = open("p124.txt", "w")
+f2 = open("Train3.txt", "w")
 # Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p124, delimiter=' , ', fmt='%f')
+np.savetxt(f2, p124, delimiter=',', fmt='%f')
+f2.close()
+
+f2 = open("Train4.txt", "w")
+# Guardamos la matriz en su formato en el archivo de salida de texto
+np.savetxt(f2, p123, delimiter=',', fmt='%f')
 f2.close()
 
 
-f2 = open("p123.txt", "w")
-# Guardamos la matriz en su formato en el archivo de salida de texto
-np.savetxt(f2, p123, delimiter=' , ', fmt='%f')
-f2.close()
+
+
+
+
 
 """
 # SALIDA DATOS DE ENTRENAMIENTO
