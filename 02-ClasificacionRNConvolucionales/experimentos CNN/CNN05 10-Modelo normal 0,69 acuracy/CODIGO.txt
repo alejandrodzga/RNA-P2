@@ -1,0 +1,18 @@
+# Modificar este modelo y evaluar resultados
+def create_model_simple_cnn():
+  model = models.Sequential()
+  model.add(layers.BatchNormalization(input_shape=(32, 32, 3)))
+
+  
+  model.add(layers.Conv2D(16, (3, 3), activation='relu',padding='same'))
+  model.add(layers.MaxPooling2D((3, 3)))
+  model.add(layers.Dropout(0.1))
+ 
+  model.add(layers.Conv2D(32, (6, 6), activation='relu',padding='same'))
+  model.add(layers.MaxPooling2D((4, 4)))
+  model.add(layers.Dropout(0.1)) 
+
+  model.add(layers.Flatten())
+  model.add(layers.Dense(32, activation='relu'))
+  model.add(layers.Dense(10, activation='softmax'))
+  return model

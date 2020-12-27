@@ -18,7 +18,7 @@ set.seed(1)
 #CARGA DE LOS DATOS
 # cambiar a fold 2 y 3
 
-fold <- 4
+fold <- 1
 
 
 # usar read.table si los campos est�n separados por espacios o tabuladores. 
@@ -49,9 +49,9 @@ testInput  <- as.matrix(testInput )
 
 
 #SELECCION DE LOS HIPERPARAMETROS DE LA RED
-topologia        <- c(10,10)
-razonAprendizaje <- 0.1
-ciclosMaximos    <- 1000
+topologia        <- c(15,10)
+razonAprendizaje <- 0.3
+ciclosMaximos    <- 500
 
 ## generar un nombre de fichero que incluya los hiperpar�metros
 fileID <- paste("fold_",fold,"_topol",paste(topologia,collapse="-"),"_ra",
